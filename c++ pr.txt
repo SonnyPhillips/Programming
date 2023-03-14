@@ -1,0 +1,261 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main (){
+    bool programloop = true;
+    while (programloop == true){
+        //this is a personal best calculator
+        //this program will also save your data entries to a file
+        cout << ("Welcome to the PB calc \n");
+        cout << ("first I will need some info:\n");
+        bool loop = true;
+        while (loop == true){
+            int height;
+            double weight;
+            string training;
+            cout << ("Can you tell me your height (in cm)\n");
+            cin >> (height);
+            cout << ("Now your weight (in KG)\n");
+            cin >> (weight);
+            bool trainloop = true;
+            bool singleloop = true;
+            while (trainloop == true){
+                cout << ("Now what do you train, Olympic or powerlifting?\n");
+                cin >> (training);
+                if (training == "powerlifting"){
+                    double squat;
+                    double bench;
+                    double deadlift;
+                    //using double so you can use decimals
+                    cout << ("Enter your squat\n");
+                    cin >> (squat);
+                    while (singleloop == true){
+                        cout << ("is this a single?\n(Y or N)\n");
+                        string single;
+                        cin >> (single);
+                        if (single == "N"){
+                            int reps;
+                            cout << ("How many reps?\n");
+                            cin >> (reps);
+                            int rpe = 100-((reps - 1) *3);
+                            squat = (squat/rpe)*100;
+                            if (squat >= 500){
+                                squat = 499.9;
+                            }
+                            cout <<("Your estimated squat is: ",squat);
+                            cout << ("\n");
+                            (singleloop = false);
+                        }
+                            
+                        if (single =="Y"){
+                            (singleloop = false);
+                        }
+                    }
+                    cout <<("Here are your rankings:\n");
+                    if (squat >= weight and squat < 2*weight){
+                        cout <<("You are in the top 80% of lifters\n");
+                    }
+                    if (squat >= weight* 2 and squat < (2.5*weight)){ 
+                        cout << ("You are in the top 40% of lifters \n");
+                    }
+                    if (squat >= weight* 2.5 and squat <(2.8* weight)){
+                        cout << ("You are in the top 20% of lifters \n");
+                    }
+                    if (squat >= weight * 2.8){
+                        cout << ("You are in the top 5% of lifters \n");
+                    }
+                    if (squat <= weight){
+                        cout << ("You squat ", squat);
+                    }
+                    
+                    cout << ("Enter your bench\n");
+                    cin >> (bench);
+                    singleloop = true;
+                    while (singleloop == true){
+                        cout << ("is this a single?\n(Y or N)\n");
+                        string single;
+                        cin >> (single);
+                        if (single == "N"){
+                            int reps;
+                            cout << ("How many reps?\n");
+                            cin >> (reps);
+                            int rpe = 100-((reps - 1) *3);
+                            bench = (bench/rpe)*100;
+                            if (bench >= 500){
+                                bench = 499.9;
+                            }
+                            cout <<("Your estimated bench is: ",bench);
+                            cout << ("\n");
+                            (singleloop = false);
+                        }
+                            
+                        if (single =="Y"){
+                            (singleloop = false);
+                        }
+                    }
+                    cout <<("Here are your rankings:\n");
+                    if (bench >= 0.75* weight and (bench < weight)){
+                        cout <<("You are in the top 80% of lifters\n");
+                    }
+                    if (bench >= weight and bench < (1.5*weight)){
+                        cout << ("You are in the top 40% of lifters \n");
+                    }
+                    if (bench >= weight* 1.5 and bench <(1.75* weight)){
+                        cout << ("You are in the top 20% of lifters \n");
+                    }
+                    if (bench >= weight * 2){
+                        cout << ("You are in the top 5% of lifters \n");
+                    }
+                    if (bench < 0.75 * weight){
+                        cout << ("You bench ", bench);
+                    }
+                    cout << ("Enter your Deadlift \n");
+                    cin >> (deadlift);
+                    singleloop = true;
+                    while (singleloop == true){
+                        cout << ("is this a single?\n(Y or N)\n");
+                        string single;
+                        cin >> (single);
+                        if (single == "N"){
+                            int reps;
+                            cout << ("How many reps?\n");
+                            cin >> (reps);
+                            int rpe = 100-((reps - 1) *3);
+                            deadlift = (deadlift/rpe)*100;
+                            if (deadlift >=550){
+                                deadlift = 549.9;
+                            }
+                            cout <<("Your estimated deadlift is: ",deadlift);
+                            cout << ("\n");
+                            (singleloop = false);
+                        }
+                        if (single =="Y"){
+                            (singleloop = false);
+                        }
+                    }
+                    cout <<("Here are your rankings:\n");
+                    if (deadlift >= 1.5* weight and (deadlift < 2* weight)){
+                        cout <<("You are in the top 80% of lifters\n");
+                    }
+                    if (deadlift >= 2* weight and deadlift < (2.5*weight)){
+                        cout << ("You are in the top 40% of lifters \n");
+                    }
+                    if (deadlift >= weight* 2.5 and deadlift <(3* weight)){
+                        cout << ("You are in the top 20% of lifters \n");
+                    }
+                    if (deadlift >= weight * 3){
+                        cout << ("You are in the top 5% of lifters \n");
+                    }
+                    if (deadlift < 1.5 * weight){
+                        cout << ("You deadlift ", deadlift);
+                    }
+                    ofstream PrFile("PrFile.txt");
+                    PrFile << "height: ", height, "\nweight: ", weight, "\n-----------------\n\nsquat: ", squat, "\nbench: ", bench ,"\ndeadlift: ", deadlift;
+                    cout <<"\n we have just created a file with your results!!\n";
+                    PrFile.close();
+                    //first time using file creation 
+                    cout << "---------------------------\n";
+                    trainloop = false;
+                    loop = false;
+                }
+                if (training == "olympic"){
+                    double snatch;
+                    double caj;
+                    cout << ("Enter your snatch\n");
+                    cin >> (snatch);
+                    while (singleloop == true){
+                        cout << ("is this a single?\n(Y or N)\n");
+                        string single;
+                        cin >> (single);
+                        if (single == "N"){
+                            int reps;
+                            cout << ("How many reps?\n");
+                            cin >> (reps);
+                            int rpe = 100-((reps - 1) *3);
+                            snatch = (snatch/rpe)*100;
+                            if (snatch >= 200){
+                                snatch = 199.9;
+                            }
+                            cout <<("Your estimated snatch is: ",snatch);
+                            cout << ("\n");
+                            (singleloop = false);
+                        }
+                            
+                        if (single =="Y"){
+                            (singleloop = false);
+                        }
+                    }
+                    cout <<("Here are your rankings:\n");
+                    if (snatch >= 0.75*weight and snatch < 1.2*weight){
+                        cout <<("You are in the top 80% of lifters\n");
+                    }
+                    if (snatch >= weight* 1.2 and snatch < (1.5*weight)){
+                        cout << ("You are in the top 40% of lifters \n");
+                    }
+                    if (snatch >= weight* 1.5 and snatch <(1.75* weight)){
+                        cout << ("You are in the top 20% of lifters \n");
+                    }
+                    if (snatch >= weight * 2){
+                        cout << ("You are in the top 5% of lifters \n");
+                    }
+                    if (snatch < weight*0.75){
+                        cout << ("You snatch ", snatch);
+                    }
+                    
+                    cout << ("Enter your clean and jerk\n");
+                    cin >> (caj);
+                    singleloop = true;
+                    while (singleloop == true){
+                        cout << ("is this a single?\n(Y or N)\n");
+                        string single;
+                        cin >> (single);
+                        if (single == "N"){
+                            int reps;
+                            cout << ("How many reps?\n");
+                            cin >> (reps);
+                            int rpe = 100-((reps - 1) *3);
+                            caj = (caj/rpe)*100;
+                            if (caj >=300){
+                                caj = 299.9;
+                            }
+                            cout <<("Your estimated clean and jerk is: ",caj);
+                            cout << ("\n");
+                            (singleloop = false);
+                        }
+                            
+                        if (single =="Y"){
+                            (singleloop = false);
+                        }
+                    }
+                    cout <<("Here are your rankings:\n");
+                    if (caj >= 0.75* weight and (caj < weight)){
+                        cout <<("You are in the top 80% of lifters\n");
+                    }
+                    if (caj >= weight and caj < (1.25*weight)){
+                        cout << ("You are in the top 40% of lifters \n");
+                    }
+                    if (caj >= weight* 1.25 and caj <(2* weight)){
+                        cout << ("You are in the top 20% of lifters \n");
+                    }
+                    if (caj >= weight * 2){
+                        cout << ("You are in the top 5% of lifters \n");
+                    }
+                    if (caj < 0.75 * weight){
+                        cout << ("You clean and jerk ", caj);
+                    }
+                    ofstream PrFile("PrFile.txt");
+                    PrFile << "height: ", height, "\nweight: ", weight, "\n-----------------\n\nsnatch: ", snatch, "\nclean and jerk: ", caj;
+                    cout <<"\n we have just created a file with your results!!\n";
+                    cout << "---------------------------\n";
+                    PrFile.close();
+                    trainloop = false;
+                    loop = false;
+                }
+            }
+        }
+    }
+}

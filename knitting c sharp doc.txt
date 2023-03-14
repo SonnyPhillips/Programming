@@ -1,0 +1,160 @@
+using System;
+
+namespace MyApplication
+{
+    class Wool
+    {
+        string count;
+        string name;
+        int stitches;
+        int rows;
+        static void Main(string[] args)
+        {
+           //this is a knitting inventory system
+            Wool Red = new Wool ();
+            Red.count = "0";
+            Red.name = "Red Wool";
+      
+            Wool Blue = new Wool ();
+            Blue.count = "0";
+            Blue.name = "Blue Wool";
+      
+            Wool Green = new Wool();
+            Green.count = "0";
+            Green.name = "Green Wool";
+            
+            Wool Scarf = new Wool();
+            Scarf.stitches = 0;
+            Scarf.rows = 0;
+            Console.WriteLine ("WELCOME TO KNITTING INVENTORY");
+            Console.WriteLine("");
+            Console.WriteLine ("Enter your name");
+            Console.WriteLine("");
+            Console.WriteLine("------------------");
+            string UserName = Console.ReadLine();
+            Console.WriteLine("");
+            Console.WriteLine ("Hello " + UserName);
+            Console.WriteLine("");
+            Console.WriteLine("-------------------");
+            int Projectcount = 0;
+            bool Loop = true;
+            double ProjectProgress = 0;
+            string Projectname = ("");
+            while (Loop == true){
+                Console.WriteLine ("1. Inventory");
+                Console.WriteLine ("2. Progress");
+                bool ChoiceLoop = true;
+                while (ChoiceLoop == true){
+                    string Choice = Console.ReadLine ();
+                    if (Choice == "1"){
+                        Console.WriteLine (Red.name);
+                        Console.WriteLine (Red.count);
+                        Console.WriteLine ("--------------");
+                        Console.WriteLine (Blue.name);
+                        Console.WriteLine (Blue.count);
+                        Console.WriteLine ("--------------");
+                        Console.WriteLine (Green.name);
+                        Console.WriteLine (Green.count);
+                        Console.WriteLine ("--------------");
+                        Console.WriteLine ("Edit Iventory?(Y or N)");
+                        bool ChoiceLoop2 = true;
+                        while (ChoiceLoop2 == true){
+                            string Choice2 = Console.ReadLine ();
+                            Choice2 = Choice2.ToUpper();
+                            if (Choice2 == "N"){
+                                ChoiceLoop2 = false;
+                                ChoiceLoop = false;
+                                
+                            }
+                            if (Choice2 == "Y"){
+                                Console.WriteLine("What would you like to change?");
+                                bool ChoiceLoop3 = true;
+                                while (ChoiceLoop3 == true){
+                                    Console.WriteLine("Red, Blue or Green");
+                                    string Choice3 = Console.ReadLine ();
+                                    Choice3 = Choice3.ToUpper();
+                                    if (Choice3 =="RED"){
+                                        Console.WriteLine("How many Reds do you have?");
+                                        string Reds = Console.ReadLine();
+                                        Red.count = Reds;
+                                        ChoiceLoop3 = false;
+                                        ChoiceLoop2 = false;
+                                        ChoiceLoop = false;
+                                    }
+                                    if (Choice3 =="BLUE"){
+                                        Console.WriteLine("How many Blues do you have?");
+                                        string Blues = Console.ReadLine();
+                                        Blue.count = Blues;
+                                        ChoiceLoop3 = false;
+                                        ChoiceLoop2 = false;
+                                        ChoiceLoop = false;
+                                    }
+                                    if (Choice3 =="GREEN"){
+                                        Console.WriteLine("How many Green do you have?");
+                                        string Greens =Console.ReadLine();
+                                        Green.count = Greens;
+                                        ChoiceLoop3 = false;
+                                        ChoiceLoop2 = false;
+                                        ChoiceLoop = false;
+                                    }
+                                    else{
+                                        Console.WriteLine("Invalid Input");
+                                    }
+                                    
+                                    
+                                }
+                                
+                            }
+                            else{
+                                Console.WriteLine("Invalid Input");
+                            }
+                        }
+                        
+                    }
+                   if (Choice == "2"){
+                        if (Projectcount > 0){
+                            Console.WriteLine ("Current Project:");
+                            Console.WriteLine (Projectname);
+                            Console.WriteLine (ProjectProgress +" percent complete!");
+                        }
+                        Console.WriteLine ("Add new project?(Y or N) ");
+                        string Option = Console.ReadLine();
+                        Option = Option.ToUpper();
+                        bool OptionLoop = true;
+                        while (OptionLoop == true){
+                            if (Option == "N"){
+                                OptionLoop = false;
+                                ChoiceLoop = false;
+                            }
+                            if (Option == "Y"){
+                                Console.WriteLine ("Enter Project name");
+                                Projectname = Console.ReadLine();
+                                Console.WriteLine ("Enter stitch number");
+                                Scarf.stitches = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter Desired row count");
+                                Scarf.rows = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine ("Enter current row count");
+                                ProjectProgress = Convert.ToInt32(Console.ReadLine());
+                                ProjectProgress = ProjectProgress / Scarf.rows;
+                                ProjectProgress = ProjectProgress * 100;
+                                Console.WriteLine("You are " + ProjectProgress +" percent complete");
+                                Projectcount = Projectcount + 1;
+                                ChoiceLoop = false;
+                                OptionLoop = false;
+                                
+                            }
+                            else{
+                                Console.WriteLine("Invalid Input");
+                            }
+                        }
+                    }
+                    else{
+                        Console.WriteLine("Invalid Input");
+                    }
+                }
+                
+            }
+        }
+        
+    }
+}
